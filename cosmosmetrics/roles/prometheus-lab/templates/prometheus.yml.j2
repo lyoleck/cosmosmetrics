@@ -1,0 +1,9 @@
+global:
+
+scrape_configs:
+  - job_name: 'cosmosmetrics'
+
+    scrape_interval: 5s
+
+    static_configs:
+      - targets: ['{{ cosmos_node_addr | default('localhost') }}:8000']

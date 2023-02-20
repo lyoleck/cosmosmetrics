@@ -1,0 +1,5 @@
+- name: metrics-exporter installation
+  hosts: all
+  become: yes
+  roles:
+    - metrics-exporter

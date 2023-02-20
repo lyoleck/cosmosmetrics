@@ -1,0 +1,6 @@
+- name: metrics-exporter-restart
+  systemd:
+    daemon_reload: yes
+    name: metrics-exporter
+    state: restarted
+    enabled: true

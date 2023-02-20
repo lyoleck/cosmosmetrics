@@ -1,0 +1,31 @@
+- name: check required packages
+  apt:
+    name:
+      - php
+      - php-curl
+    state: present
+    update_cache: yes
+
+- name: check /home/metrics-exporter directory
+  file:
+    path: /home/metrics-exporter
+    state: directory
+
+- name: check metrics-exporter script
+  synchronize:
+    src: files/metrics-exporter.php
+    dest: /home/metrics-exporter /metrics-exporter.php
+  notify: metrics-exporter-restart
+
+- name: check metrics-exporter systemd service file
+  synchronize:
+    src: files/metrics-exporter.service
+    dest: /etc/systemd/system/metrics-exporter.service
+  notify: metrics-exporter-restart
+
+- name: ensure metrics-exporter service is enabled and started
+  systemd:
+    name: metrics-exporter
+    state: started
+    enabled: true
+    masked: false

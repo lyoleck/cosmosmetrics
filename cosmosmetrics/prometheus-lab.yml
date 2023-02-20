@@ -1,0 +1,5 @@
+- name: prometheus demonstration-lab installation
+  hosts: all
+  become: yes
+  roles:
+    - prometheus-lab

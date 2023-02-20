@@ -1,0 +1,11 @@
+[Unit]
+Description=metrics-exporter
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/php -S localhost:8000 /home/metrics-exporter/metrics-exporter.php
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
